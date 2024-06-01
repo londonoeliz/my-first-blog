@@ -1,0 +1,78 @@
+COMANDOS PARA EJECUTAR EN EL CMD DIRECTAMENTE EN EL DIRECTORIO DONDE CREAMOS LA CARPETA PARA TRABAJAR
+
+---Crear un entorno virtual (myvenv es el nombre asignado al entorno virtual)
+python -m venv myvenv
+
+---Activar un entorno virtual
+myvenv\Scripts\activate
+
+---Activar un entorno virtual directamente en la consola
+myvenv\Scripts\activate.ps1
+
+
+INSTALAR DJANGO
+	
+---Para instalar la ultima version de pip (Software que utilizamos para instalar Django)
+(myvenv) ~$ python -m pip install --upgrade pip
+
+---Comando para instalar Django (Primero crear archivo requirements.txt en el folder del proyecto y poner Django~=3.2.10 adentro)
+pip install -r requirements.txt
+
+CREAR PROYECTO DJANGO
+--- En la ruta del proyecto correr (El punto . es crucial porque le dice al script que instale Django en el directorio actual)
+django-admin.exe startproject mysite .
+
+---Dentro de los archivos que se crean al crear el proyecto
+-- manage.py ( ayuda con la administración del sitio. Con él podremos iniciar un servidor web en nuestro ordenador sin necesidad de instalar nada más)
+-- settings.py (contiene la configuración de tu sitio web)
+-- urls.py (contiene una lista de los patrones utilizados por urlresolver)
+
+---Comando para crear una base de datos para el proyecto
+python manage.py migrate
+
+INICIAR EL SERVIDOR
+Debo estar en la ruta del proyecto que contiene manage.py
+
+---Comando para iniciar el proyecto (osea, correr el servidor web)
+(myvenv) ~/djangogirls$ python manage.py runserver
+
+---Si el comando anterior falla con un error UnicodeDecodeError, utiliza en su lugar este comando
+(myvenv) ~/djangogirls$ python manage.py runserver 0:8000
+
+---Abrir esta url en el navegador para ver que está funcionando
+http://127.0.0.1:8000/
+
+
+CREAR UNA APLICACION (Aplicacion puede ser como funcionalidades de un sitio web)
+
+--- Crear una aplicacion
+(myvenv) C:\Users\Name\djangogirls> python manage.py startapp blog
+
+En el archivo settings.py añadir en el apart INSTALLED_APPS el nombre 'blog.apps.BlogConfig' (blog viene del nombre enviado en el comando anterior)
+
+En el archivo models.py añadir el codigo que va a crear la estructura del sitio web
+
+---Para decirle a python que se hicieron cambios en el archivo models.py y esto crea un archivo de migración para luego ser aplicado a la DB
+python manage.py makemigrations blog
+
+---Para aplicar los cambios a la DB del comando anterior
+python manage.py migrate blog
+
+
+FUNCIONES DE ADMINISTRADOR
+
+---Crear una psw para el sitio web
+python manage.py createsuperuser
+
+
+sara.londono
+sara@gmail.com
+practicadjango2024
+
+
+DESCARGAR GIT
+
+git-scm.com
+
+git init -- 
+git status --  para ver antes de hacer el commit que hay
